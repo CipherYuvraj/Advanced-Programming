@@ -1,0 +1,38 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"label": "Compile and run",
+		"type": "shell",
+		"command": "powershell",
+		"args": [
+		  "-Command",
+		  "Copy-Item -Path \"${file}\" -Destination \"${workspaceFolder}\\jspwTest.cpp\"; if ($?) { g++ \"${workspaceFolder}\\jspwTest.cpp\" -o \"${workspaceFolder}\\jspwTest.exe\"; if ($?) { Get-Content \"${workspaceFolder}\\input.txt\" | & \"${workspaceFolder}\\jspwTest.exe\" > \"${workspaceFolder}\\output.txt\"; Remove-Item \"${workspaceFolder}\\jspwTest.exe\" -Force; Remove-Item \"${workspaceFolder}\\jspwTest.cpp\" -Force } }"
+		],
+		"presentation": {
+		  "reveal": "always",
+		  "panel": "shared",
+		  "clear": true
+		},
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		},
+		"problemMatcher": {
+		  "owner": "cpp",
+		  "fileLocation": [
+			"relative",
+			"${workspaceRoot}"
+		  ],
+		  "pattern": {
+			"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+			"file": 1,
+			"line": 2,
+			"column": 3,
+			"severity": 4,
+			"message": 5
+		  }
+		}
+	  }
+	]
+  }
